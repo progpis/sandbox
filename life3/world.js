@@ -111,7 +111,7 @@ window.life.World = function(controller) {
 	}
 
 	function blurFood(n) {
-		n = n || 3;
+		n = n || Math.ceil(_radius/3);
 
 		for (m = 0; m < n; m++) {
 			var food, i, j, k, m, field, links, total_food, avg_food;
@@ -121,7 +121,6 @@ window.life.World = function(controller) {
 				for (j = 0; j < _fields[i].length; j++) {
 					field = _fields[i][j];
 					links = field.getLinks();
-					console.log(field.getId(), links.length);
 					total_food = 0;
 					for (k = 0; k < links.length; k++) {
 						total_food += links[k].getFood();

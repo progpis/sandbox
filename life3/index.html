@@ -5,13 +5,15 @@
 	<style>
 		#canvas {
 			background-color: #fff;
-			border: solid 1px #000;
+			border: solid 1px #fff;
 		}
 	</style>
 </head>
 <body>
 
-<canvas id="canvas" width="600" height="600"></canvas>
+<div style="text-align: center">
+	<canvas id="canvas" width="600" height="600"></canvas>
+</div>
 
 <script src="life.js"></script>
 <script src="controller.js"></script>
@@ -25,7 +27,9 @@
 window.onload = function(){
 
 	var controller = new life.Controller();
-	controller.init();
+	controller.init({
+		world_radius: 20
+	});
 
 
 };

@@ -9,7 +9,8 @@ window.life.FieldRenderer = function(controller) {
 	field_renderer.init = function(canvas, world) {
 		_canvas = canvas;
 		_world = world;
-		_r = _canvas.getWidth() / (_world.getRadius() * 2 + 1) / 2;
+		_r = _canvas.getHeight() / (_world.getRadius() * 2 + 1) / 1.75;
+
 		_q = Math.sqrt(_r * _r - (_r * _r / 4));
 	};
 	
@@ -43,8 +44,10 @@ window.life.FieldRenderer = function(controller) {
 	};
 	
 	field_renderer.renderField = function(x, y, field) {
-		_canvas.drawHex(x, y, _r, _q, '#666', getBackgroundColor(field));
-		_canvas.drawText(x - 15, y + 3, field.getId() + ', ' + field.getFood(), '#000', '10px Helvetica');
+		var color;
+		color = getBackgroundColor(field.getFood(), 0x33, 0xCC);
+		_canvas.drawHex(x, y, _r, _q, '#060', color);
+//		_canvas.drawText(x - 15, y + 3, field.getId() + ', ' + field.getFood(), '#000', '10px Helvetica');
 	};
 	
 	//
@@ -61,12 +64,8 @@ window.life.FieldRenderer = function(controller) {
 		];
 	}
 
-	function getBackgroundColor(field) {
-		var col_min  = 0;
-		var col_max  = 0x99;
-		var food_max = 0x33;
-		var food_cur = field.getFood();
-		var color    = Math.floor((col_max-col_min) * food_cur / food_max + col_min);
+	function getBackgroundColor(value, col_min, col_max) {
+		var color    = Math.floor((col_max - col_min) * value / 100 + col_min);
 		return '#00'+ (color.toString(16)) +'00';
 	}
 

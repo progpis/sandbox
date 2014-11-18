@@ -2,17 +2,15 @@ window.life.Field = function(controller) {
 	var field = this;
 
 	var _id;
-	var _level;
 	var _links;
 	var _food;
 
 	//
 
-	field.init = function(id, level) {
+	field.init = function(id) {
 		_id = id;
 		_links = [];
-		_level = level || 0;
-		_food = life.rand(0, 100);
+		_food = getInitialFood();
 	};
 
 	field.tick = function(tick) {
@@ -21,10 +19,6 @@ window.life.Field = function(controller) {
 
 	field.getId = function() {
 		return _id;
-	};
-
-	field.getLevel = function() {
-		return _level;
 	};
 
 	field.addLink = function(link) {
@@ -41,6 +35,12 @@ window.life.Field = function(controller) {
 
 	field.setFood = function(amount) {
 		_food = amount;
+	};
+
+	//
+
+	function getInitialFood() {
+		return life.rand(0, 100)
 	}
 
 };
