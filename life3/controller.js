@@ -6,7 +6,9 @@ window.life.Controller = function() {
 	var _ticker;
 	var _canvas;
 	var _world;
-	var _field_renderer;
+	var _renderer;
+
+	var _fauna;
 
 	//
 
@@ -17,12 +19,16 @@ window.life.Controller = function() {
 		_ticker = new life.Ticker(controller);
 		_canvas = new life.Canvas(controller);
 		_world = new life.World(controller);
-		_field_renderer = new life.FieldRenderer(controller);
+		_fauna = new life.Fauna(controller);
+
+		_renderer = new life.Renderer(controller);
 
 		_ticker.init(1000);
 		_canvas.init('canvas');
 		_world.init(_world_radius);
-		_field_renderer.init(_canvas, _world);
+		_fauna.init(options.breeds || []);
+
+		_renderer.init(_canvas, _world);
 
 		_ticker.start();
 
@@ -32,7 +38,7 @@ window.life.Controller = function() {
 	controller.tick = function(tick) {
 		_canvas.clear();
 		//_canvas.drawGuidelines();
-		_field_renderer.renderFields();
+		_renderer.renderFields();
 	};
 
 	controller.event = function(event) {

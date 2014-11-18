@@ -1,12 +1,12 @@
-window.life.FieldRenderer = function(controller) {
-	var field_renderer = this;
+window.life.Renderer = function(controller) {
+	var renderer = this;
 
 	var _canvas;
 	var _world;
 	var _r;
 	var _q;
 
-	field_renderer.init = function(canvas, world) {
+	renderer.init = function(canvas, world) {
 		_canvas = canvas;
 		_world = world;
 		_r = _canvas.getHeight() / (_world.getRadius() * 2 + 1) / 1.75;
@@ -14,7 +14,7 @@ window.life.FieldRenderer = function(controller) {
 		_q = Math.sqrt(_r * _r - (_r * _r / 4));
 	};
 	
-	field_renderer.renderFields = function() {
+	renderer.renderFields = function() {
 		var center, x, y, walk, fields, level, j, walk_direction, walk_step;
 
 		center = _canvas.getCenter();
@@ -23,7 +23,7 @@ window.life.FieldRenderer = function(controller) {
 
 		walk = getWalk();
 		fields = _world.getFields();
-		field_renderer.renderField(x, y, fields[0][0]);
+		renderer.renderField(x, y, fields[0][0]);
 
 		for (level = 1; level < fields.length; level++) {
 			walk_direction = 0;
@@ -31,7 +31,7 @@ window.life.FieldRenderer = function(controller) {
 			for (j = 0; j < fields[level].length; j++) {
 				x += walk[walk_direction].x;
 				y += walk[walk_direction].y;
-				field_renderer.renderField(x, y, fields[level][j]);
+				renderer.renderField(x, y, fields[level][j]);
 				walk_step++;
 				if (walk_step == level || j == 0) {
 					walk_step = 0;
@@ -43,7 +43,7 @@ window.life.FieldRenderer = function(controller) {
 		}
 	};
 	
-	field_renderer.renderField = function(x, y, field) {
+	renderer.renderField = function(x, y, field) {
 		var color;
 		color = getBackgroundColor(field.getFood(), 0x33, 0xCC);
 		_canvas.drawHex(x, y, _r, _q, '#060', color);
