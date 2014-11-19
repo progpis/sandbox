@@ -25,21 +25,22 @@
 <script src="breed.js"></script>
 <script src="creature.js"></script>
 <script src="dna.js"></script>
+<script src="ai.js"></script>
 <script src="renderer.js"></script>
 
 <script>
 window.onload = function(){
 
 	var dna = {};
+	var ai = {};
 
 	var controller = new life.Controller();
 	controller.init({
 		world_radius: 10,
 		breeds: [
-			{ pop: 2, dna: dna }
+			{ pop: 2, dna: dna, ai: ai }
 		]
 	});
-
 
 };
 </script>

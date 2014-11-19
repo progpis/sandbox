@@ -26,9 +26,9 @@ window.life.Controller = function() {
 		_ticker.init(1000);
 		_canvas.init('canvas');
 		_world.init(_world_radius);
-		_fauna.init(options.breeds || []);
+		_fauna.init(_world, options.breeds || []);
 
-		_renderer.init(_canvas, _world);
+		_renderer.init(_canvas, _world, _fauna);
 
 		_ticker.start();
 
@@ -39,6 +39,7 @@ window.life.Controller = function() {
 		_canvas.clear();
 		//_canvas.drawGuidelines();
 		_renderer.renderFields();
+		_renderer.renderCreatures();
 	};
 
 	controller.event = function(event) {

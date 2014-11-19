@@ -68,10 +68,14 @@ window.life.Canvas = function(controller) {
 		_context.stroke();
 	};
 
-	canvas.drawCircle = function(x, y, r, color) {
+	canvas.drawCircle = function(x, y, r, color, background) {
 		_context.beginPath();
 		_context.arc(Math.floor(x), Math.floor(y), r, 0, 2*Math.PI);
 		_context.strokeStyle = color || '#000';
+		if (background) {
+			_context.fillStyle = background;
+			_context.fill();
+		}
 		_context.stroke();
 	};
 
