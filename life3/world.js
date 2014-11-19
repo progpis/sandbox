@@ -106,6 +106,18 @@ window.life.World = function(controller) {
 		field2.addLink(field1);
 	}
 
+	function getWalk() {
+		return [
+			{ x:  0, y: -1 }, // up
+			{ x:  1, y:  1 }, // right-down
+			{ x:  0, y:  1 }, // down
+			{ x: -1, y:  1 }, // left-down
+			{ x: -1, y: -1 }, // left-up
+			{ x:  0, y: -1 }, // up
+			{ x:  1, y: -1 }  // right-up
+		];
+	}
+
 	function getNextFieldId() {
 		return ++_field_id;
 	}
@@ -136,5 +148,6 @@ window.life.World = function(controller) {
 			}
 		}
 	}
+
 
 };
