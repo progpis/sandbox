@@ -19,27 +19,27 @@ window.life.Controller = function() {
 		_ticker = new life.Ticker(controller);
 		_canvas = new life.Canvas(controller);
 		_world = new life.World(controller);
-		_fauna = new life.Fauna(controller);
+//		_fauna = new life.Fauna(controller);
+//
+//		_renderer = new life.Renderer(controller);
 
-		_renderer = new life.Renderer(controller);
-
-		_ticker.init(1000);
+//		_ticker.init(1000);
 		_canvas.init('canvas');
-		_world.init(_world_radius);
-		_fauna.init(_world, options.breeds || []);
+		_world.init(_world_radius, _canvas);
+//		_fauna.init(_world, options.breeds || []);
 
-		_renderer.init(_canvas, _world, _fauna);
+//		_renderer.init(_canvas, _world, _fauna);
 
-		_ticker.start();
+//		_ticker.start();
 
 		controller.event({ obj: controller, type: 'tick', tick: 0});
 	};
 
 	controller.tick = function(tick) {
-		_canvas.clear();
+//		_canvas.clear();
 		//_canvas.drawGuidelines();
-		_renderer.renderFields();
-		_renderer.renderCreatures();
+//		_renderer.renderFields();
+//		_renderer.renderCreatures();
 	};
 
 	controller.event = function(event) {
