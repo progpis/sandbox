@@ -1,15 +1,19 @@
 window.life.Field = function(controller) {
 	var field = this;
 
-	var _id;
+	var _x;
+	var _y;
 	var _links;
+	var _directions;
 	var _food;
 
 	//
 
-	field.init = function(id) {
-		_id = id;
+	field.init = function(x, y) {
+		_x = x;
+		_y = y;
 		_links = [];
+		_directions = {};
 		_food = getInitialFood();
 	};
 
@@ -17,12 +21,17 @@ window.life.Field = function(controller) {
 
 	};
 
-	field.getId = function() {
-		return _id;
+	field.getX = function() {
+		return _x;
 	};
 
-	field.addLink = function(link) {
+	field.getY = function() {
+		return _y;
+	};
+
+	field.addLink = function(link, direction) {
 		_links.push(link);
+		_directions[direction] = link;
 	};
 
 	field.getLinks = function() {
